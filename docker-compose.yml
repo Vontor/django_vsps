@@ -10,4 +10,11 @@ services:
       - "8000:8000"
     env_file:
       - .env
+      
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=300 # Check every 5 minutes
     restart: unless-stopped
