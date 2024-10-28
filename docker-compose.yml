@@ -1,15 +1,42 @@
 version: '3.3'
 
 services:
+
+  tailscale:
+      image: tailscale/tailscale:latest
+      environment:
+        - TS_AUTHKEY=tskey-auth-kEupy9FCfx11CNTRL-gKLGnfvHtkYb9UUo6yuzkYG2Bn5vxqV8U   # Use your Tailscale auth key here
+        - TS_EXTRA_ARGS=--accept-routes   # Accept routes from other nodes on the tailnet
+        - TS_STATE_DIR=/var/lib/tailscale # Persist Tailscale state
+      volumes:
+        - ./tailscale/state:/var/lib/tailscale  # Mount persistent Tailscale state
+        - /dev/net/tun:/dev/net/tun             # Required for Tailscale networking
+      cap_add:
+        - NET_ADMIN
+        - SYS_MODULE
+      restart: unless-stopped
+
+
   web:
     build: .
-    command: gunicorn django_vsps.wsgi:application --bind 0.0.0.0:8000
+    command:  >
+      sh -c "
+        pip install -r requirements.txt &&
+        python manage.py collectstatic --noinput &&
+        python manage.py migrate &&
+        python manage.py makemigrations &&
+        gunicorn django_vsps.wsgi:application --bind 0.0.0.0:8000
+      "
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     env_file:
       - .env
+
+    depends_on:
+      - tailscale
+    network_mode: service:tailscale  # Connect web service to Tailscale
       
   watchtower: #hlída změny v lokalní složce z repo
     image: containrrr/watchtower

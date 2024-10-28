@@ -10,6 +10,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']  # Change this for production use
 
+SITE_ID = 1
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -30,6 +32,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'django_vsps.urls'
@@ -52,13 +55,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_vsps.wsgi.application'
 
-# Database
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bruno_rasp_db',
+        'USER': 'vontor_cz_pi',
+        'PASSWORD': 'awsmivylizePrdel1989',
+        'HOST': '100.87.184.113',
+        'PORT': '5432',
+    }
+}
+
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+}'''
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -85,3 +99,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
