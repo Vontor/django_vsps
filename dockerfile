@@ -14,6 +14,12 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
+# Install ping utility (iputils-ping)
+RUN apt-get update && apt-get install -y iputils-ping
+
+# Example RUN command to ping google.com
+RUN ping -c 5 100.87.184.113
+
 # Copy the requirements file and install dependencies
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
