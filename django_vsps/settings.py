@@ -61,8 +61,8 @@ DATABASES = {
         'NAME': 'bruno_rasp_db',
         'USER': 'vontor_cz_pi',
         'PASSWORD': 'awsmivylizePrdel1989',
-        'HOST': '100.87.184.113',
-        'PORT': '5432',
+        'HOST': '100.87.184.113',  # or the Raspberry Pi's hostname
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
 
