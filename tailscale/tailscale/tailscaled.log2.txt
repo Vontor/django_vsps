@@ -1,0 +1,19 @@
+{"logtail":{"client_time":"2024-10-30T01:43:50.373238978Z","proc_id":3221461907,"proc_seq":58},"metrics":"N18profiles_newS0202N24profiles_migrationS0402N34profiles_migration_successS0602N46gauge_dns_manager_linux_mode_directS0802","text":"tailscaled got signal terminated; shutting down\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.373958539Z","proc_id":3221461907,"proc_seq":59},"text":"control: client.Shutdown ...\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.374387674Z","proc_id":3221461907,"proc_seq":60},"v":1,"text":"control: mapRoutine: context done.\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.375066408Z","proc_id":3221461907,"proc_seq":61},"text":"control: mapRoutine: exiting\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.375433166Z","proc_id":3221461907,"proc_seq":62},"v":1,"text":"control: authRoutine: context done.\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.375909159Z","proc_id":3221461907,"proc_seq":63},"text":"control: authRoutine: exiting\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.376308239Z","proc_id":3221461907,"proc_seq":64},"text":"control: updateRoutine: exiting\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.376817424Z","proc_id":3221461907,"proc_seq":65},"text":"control: Client.Shutdown done.\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.377487974Z","proc_id":3221461907,"proc_seq":66},"v":2,"text":"wg: Routine: receive incoming mkReceiveFunc - stopped\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.377851826Z","proc_id":3221461907,"proc_seq":67},"v":2,"text":"wg: Routine: receive incoming mkReceiveFunc - stopped\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.378559855Z","proc_id":3221461907,"proc_seq":68},"v":2,"text":"wg: Device closing\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.378931543Z","proc_id":3221461907,"proc_seq":69},"text":"monitor: ip rule deleted: {Family:2 DstLength:0 SrcLength:0 Tos:0 Table:254 Protocol:0 Scope:0 Type:1 Flags:0 Attributes:{Dst:<nil> Src:<nil> Gateway:<nil> OutIface:0 Priority:5210 Table:254 Mark:16711680 Pref:<nil> Expires:<nil> Metrics:<nil> Multipath:[]}}\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.37940437Z","proc_id":3221461907,"proc_seq":70},"text":"monitor: ip rule deleted: {Family:2 DstLength:0 SrcLength:0 Tos:0 Table:253 Protocol:0 Scope:0 Type:1 Flags:0 Attributes:{Dst:<nil> Src:<nil> Gateway:<nil> OutIface:0 Priority:5230 Table:253 Mark:16711680 Pref:<nil> Expires:<nil> Metrics:<nil> Multipath:[]}}\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.379828557Z","proc_id":3221461907,"proc_seq":71},"text":"monitor: ip rule deleted: {Family:2 DstLength:0 SrcLength:0 Tos:0 Table:0 Protocol:0 Scope:0 Type:7 Flags:0 Attributes:{Dst:<nil> Src:<nil> Gateway:<nil> OutIface:0 Priority:5250 Table:0 Mark:16711680 Pref:<nil> Expires:<nil> Metrics:<nil> Multipath:[]}}\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.380108081Z","proc_id":3221461907,"proc_seq":72},"text":"monitor: ip rule deleted: {Family:2 DstLength:0 SrcLength:0 Tos:0 Table:52 Protocol:0 Scope:0 Type:1 Flags:0 Attributes:{Dst:<nil> Src:<nil> Gateway:<nil> OutIface:0 Priority:5270 Table:52 Mark:0 Pref:<nil> Expires:<nil> Metrics:<nil> Multipath:[]}}\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.465385659Z","proc_id":3221461907,"proc_seq":73},"v":2,"text":"wg: Routine: receive incoming receiveDERP - stopped\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.46571674Z","proc_id":3221461907,"proc_seq":74},"v":2,"text":"wg: Device closed\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.466051578Z","proc_id":3221461907,"proc_seq":75},"text":"flushing log.\n"}
+{"logtail":{"client_time":"2024-10-30T01:43:50.466289184Z","proc_id":3221461907,"proc_seq":76},"text":"logger closing down\n"}

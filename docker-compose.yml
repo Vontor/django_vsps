@@ -1,32 +1,33 @@
-version: '3.3'
+version: '3.8'  # Specify Docker Compose version
+
+#bridge aby mohl být exposnutý port 8000 ale zaroveň django bylo na tailscale VPN
+networks:
+  tailscale-network:
+    driver: bridge
 
 services:
-
   tailscale:
-      image: tailscale/tailscale:latest
-      environment:
-        - TS_AUTHKEY=tskey-auth-kEupy9FCfx11CNTRL-gKLGnfvHtkYb9UUo6yuzkYG2Bn5vxqV8U   # Use your Tailscale auth key here
-        - TS_EXTRA_ARGS=--accept-routes   # Accept routes from other nodes on the tailnet
-        - TS_STATE_DIR=/var/lib/tailscale # Persist Tailscale state
-      volumes:
-        - ./tailscale/state:/var/lib/tailscale  # Mount persistent Tailscale state
-        - /dev/net/tun:/dev/net/tun             # Required for Tailscale networking
-      cap_add:
-        - NET_ADMIN
-        - SYS_MODULE
-      restart: unless-stopped
+    image: tailscale/tailscale:stable
+    container_name: tailscale-bridge
+    hostname: bruno-docker
+    environment:
+      - TS_AUTHKEY=tskey-auth-kvXckgD3um11CNTRL-fjT5qP5uCgC4Zsh5jvoAgCthL6LUH8Rt
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+    volumes:
+      - ${PWD}/ts-authkey-test/state:/var/lib/tailscale
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+      - sys_module
+    restart: unless-stopped
 
+    networks:
+      - tailscale-network  # Attach to custom network
 
   web:
     build: .
-    command:  >
-      sh -c "
-        pip install -r requirements.txt &&
-        python manage.py collectstatic --noinput &&
-        python manage.py migrate &&
-        python manage.py makemigrations &&
-        gunicorn django_vsps.wsgi:application --bind 0.0.0.0:8000
-      "
+    command: gunicorn django_vsps.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -34,10 +35,10 @@ services:
     env_file:
       - .env
 
-    depends_on:
-      - tailscale
-    network_mode: service:tailscale  # Connect web service to Tailscale
-      
+    #network_mode: service:tailscale
+    networks:
+      - tailscale-network  # Attach to custom network
+   
   watchtower: #hlída změny v lokalní složce z repo
     image: containrrr/watchtower
     volumes:
