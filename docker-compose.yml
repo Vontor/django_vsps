@@ -10,8 +10,10 @@ services:
     image: tailscale/tailscale:stable
     container_name: tailscale-bridge
     hostname: bruno-docker
+    env_file:
+      - .env  # Load environment variables from the .env file
     environment:
-      - TS_AUTHKEY=tskey-auth-kX5rQp4oZb11CNTRL-AHZMS8JaaH8HuHWZSnxTH8FREHR5wPBD
+      - TS_AUTHKEY=${API_KEY}
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_USERSPACE=false
     volumes:

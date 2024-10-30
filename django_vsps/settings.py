@@ -57,12 +57,12 @@ WSGI_APPLICATION = 'django_vsps.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bruno_rasp_db',
-        'USER': 'vontor_cz_pi',
-        'PASSWORD': 'awsmivylizePrdel1989',
-        'HOST': '100.87.184.113',  # or the Raspberry Pi's hostname
-        'PORT': '5432',  # Default PostgreSQL port
+        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 
