@@ -1,4 +1,4 @@
-version: '3.8'  # Specify Docker Compose version
+version: '3.3'  # Specify Docker Compose version 3.8*
 
 #bridge aby mohl být exposnutý port 8000 ale zaroveň django bylo na tailscale VPN
 networks:
