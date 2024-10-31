@@ -2,15 +2,15 @@
 FROM python:3
 
 # Install netcat-openbsd
-RUN apt-get update && \
-    apt-get install -y netcat-openbsd && \
-    apt-get clean
+#RUN apt-get update && \
+#    apt-get install -y netcat-openbsd && \
+#    apt-get clean
 
-COPY wait_for_db.sh /wait_for_db.sh
-RUN chmod +x /wait_for_db.sh
+#COPY wait_for_db.sh /wait_for_db.sh
+#RUN chmod +x /wait_for_db.sh
 
 # Use the script as the entrypoint
-ENTRYPOINT ["/wait_for_db.sh"]
+#ENTRYPOINT ["/wait_for_db.sh"]
 
 
 # Set environment variables
@@ -35,8 +35,8 @@ EXPOSE 8000
 
 # Run Django setup commands
 RUN python manage.py collectstatic --noinput
-#RUN python manage.py makemigrations --noinput
-#RUN python manage.py migrate --noinput
+RUN python manage.py makemigrations --noinput
+RUN python manage.py migrate --noinput
 
 # Start the application using Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "django_vsps.wsgi:application"]
