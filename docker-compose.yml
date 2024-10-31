@@ -1,9 +1,5 @@
 version: '3.3'  # Specify Docker Compose version 3.8*
 
-#bridge aby mohl být exposnutý port 8000 ale zaroveň django bylo na tailscale VPN
-networks:
-  tailscale-network:
-    driver: bridge
 
 services:
   tailscale:
@@ -24,10 +20,12 @@ services:
       - sys_module
     restart: unless-stopped
 
-    networks:
-      - tailscale-network  # Attach to custom network
+    network_mode: "host"
 
   web:
+    depends_on:
+      - tailscale
+
     build: .
     command: gunicorn django_vsps.wsgi:application --bind 0.0.0.0:8000
     volumes:
@@ -37,10 +35,7 @@ services:
     env_file:
       - .env
 
-    #network_mode: service:tailscale
-    networks:
-      - tailscale-network  # Attach to custom network
-   
+  
   watchtower: #hlída změny v lokalní složce z repo
     image: containrrr/watchtower
     volumes:
